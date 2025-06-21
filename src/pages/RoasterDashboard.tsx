@@ -1,0 +1,214 @@
+
+import { Package, TrendingUp, Star, Plus, Bell, BarChart3 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Header from "@/components/Header";
+import StatsCard from "@/components/StatsCard";
+import { toast } from "sonner";
+
+const RoasterDashboard = () => {
+  const handleAddProduct = () => {
+    toast.success("Product added successfully!", {
+      description: "Your new coffee is now live in the marketplace."
+    });
+  };
+
+  const recentOrders = [
+    { id: "ORD-001", customer: "Sarah Johnson", product: "Ethiopian Yirgacheffe", quantity: 2, status: "pending", total: 49.98 },
+    { id: "ORD-002", customer: "Mike Chen", product: "Colombian Supremo", quantity: 1, status: "processing", total: 22.50 },
+    { id: "ORD-003", customer: "Emma Davis", product: "Guatemala Antigua", quantity: 3, status: "shipped", total: 80.25 },
+  ];
+
+  const products = [
+    { id: "1", name: "Ethiopian Yirgacheffe", stock: 45, price: 24.99, rating: 4.8, sales: 127 },
+    { id: "2", name: "Colombian Supremo", stock: 32, price: 22.50, rating: 4.6, sales: 89 },
+    { id: "3", name: "Guatemala Antigua", stock: 0, price: 26.75, rating: 4.9, sales: 156 },
+  ];
+
+  return (
+    <div className="min-h-screen bg-coffee-50">
+      <Header />
+      
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-4xl font-bold coffee-text-gradient">Roaster Dashboard</h1>
+            <p className="text-coffee-700 mt-2">Welcome back, Mountain Peak Roasters</p>
+          </div>
+          <Button onClick={handleAddProduct} className="coffee-gradient">
+            <Plus className="h-4 w-4 mr-2" />
+            Add New Coffee
+          </Button>
+        </div>
+
+        {/* Stats Overview */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <StatsCard
+            title="Total Sales"
+            value="$12,847"
+            description="This month"
+            icon={TrendingUp}
+            trend={{ value: 12.5, label: "from last month" }}
+          />
+          <StatsCard
+            title="Active Products"
+            value={products.length}
+            description="In catalog"
+            icon={Package}
+          />
+          <StatsCard
+            title="Pending Orders"
+            value="8"
+            description="Need attention"
+            icon={Bell}
+          />
+          <StatsCard
+            title="Avg Rating"
+            value="4.8"
+            description="Customer satisfaction"
+            icon={Star}
+          />
+        </div>
+
+        <Tabs defaultValue="orders" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-3 bg-white border border-coffee-200">
+            <TabsTrigger value="orders" className="data-[state=active]:bg-coffee-100">Recent Orders</TabsTrigger>
+            <TabsTrigger value="products" className="data-[state=active]:bg-coffee-100">My Products</TabsTrigger>
+            <TabsTrigger value="analytics" className="data-[state=active]:bg-coffee-100">Analytics</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="orders" className="space-y-6">
+            <Card className="border-coffee-200">
+              <CardHeader>
+                <CardTitle className="text-coffee-900">Recent Orders</CardTitle>
+                <CardDescription>Manage your incoming orders and fulfillment</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {recentOrders.map((order) => (
+                    <div key={order.id} className="flex items-center justify-between p-4 border border-coffee-200 rounded-lg">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="font-semibold text-coffee-900">{order.id}</span>
+                          <Badge
+                            variant={order.status === "pending" ? "destructive" : 
+                                   order.status === "processing" ? "default" : "secondary"}
+                            className={order.status === "pending" ? "" : 
+                                     order.status === "processing" ? "coffee-gradient" : "bg-green-100 text-green-800"}
+                          >
+                            {order.status}
+                          </Badge>
+                        </div>
+                        <p className="text-coffee-700">{order.customer} • {order.product}</p>
+                        <p className="text-sm text-coffee-600">Quantity: {order.quantity} • Total: ${order.total}</p>
+                      </div>
+                      <Button size="sm" variant="outline" className="border-coffee-300">
+                        View Details
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="products" className="space-y-6">
+            <Card className="border-coffee-200">
+              <CardHeader>
+                <CardTitle className="text-coffee-900">Product Inventory</CardTitle>
+                <CardDescription>Manage your coffee products and stock levels</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {products.map((product) => (
+                    <div key={product.id} className="flex items-center justify-between p-4 border border-coffee-200 rounded-lg">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-coffee-900 mb-1">{product.name}</h3>
+                        <div className="flex items-center gap-4 text-sm text-coffee-600">
+                          <span>Stock: {product.stock} bags</span>
+                          <span>Price: ${product.price}</span>
+                          <span>Rating: {product.rating}/5</span>
+                          <span>Sales: {product.sales}</span>
+                        </div>
+                        {product.stock === 0 && (
+                          <Badge variant="destructive" className="mt-2">Out of Stock</Badge>
+                        )}
+                        {product.stock < 10 && product.stock > 0 && (
+                          <Badge variant="default" className="mt-2 bg-orange-100 text-orange-800">Low Stock</Badge>
+                        )}
+                      </div>
+                      <div className="flex gap-2">
+                        <Button size="sm" variant="outline" className="border-coffee-300">
+                          Edit
+                        </Button>
+                        <Button size="sm" variant="outline" className="border-coffee-300">
+                          Restock
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="analytics" className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="border-coffee-200">
+                <CardHeader>
+                  <CardTitle className="text-coffee-900 flex items-center gap-2">
+                    <BarChart3 className="h-5 w-5" />
+                    Sales Performance
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-coffee-700">This Week</span>
+                      <span className="font-bold text-coffee-900">$2,847</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-coffee-700">This Month</span>
+                      <span className="font-bold text-coffee-900">$12,847</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-coffee-700">Total Revenue</span>
+                      <span className="font-bold text-coffee-900">$67,234</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-coffee-200">
+                <CardHeader>
+                  <CardTitle className="text-coffee-900">Top Performing Products</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {products
+                      .sort((a, b) => b.sales - a.sales)
+                      .map((product, index) => (
+                        <div key={product.id} className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <Badge variant="secondary" className="w-6 h-6 flex items-center justify-center p-0">
+                              {index + 1}
+                            </Badge>
+                            <span className="text-coffee-900">{product.name}</span>
+                          </div>
+                          <span className="text-coffee-600">{product.sales} sales</span>
+                        </div>
+                      ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  );
+};
+
+export default RoasterDashboard;
