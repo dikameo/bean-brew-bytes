@@ -42,7 +42,7 @@ const Login = () => {
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Coffee className="h-10 w-10 text-coffee-600" />
             <span className="text-3xl font-bold coffee-text-gradient">
-              Bean Brew Bytes
+              Roasty
             </span>
           </div>
           <p className="text-coffee-600">Masuk ke akun Anda</p>

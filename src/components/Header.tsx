@@ -1,4 +1,3 @@
-
 import { Coffee, Menu, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -14,7 +13,7 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-2">
             <Coffee className="h-8 w-8 text-coffee-600" />
             <span className="text-2xl font-bold coffee-text-gradient">
-              Bean Brew Bytes
+              Roasty
             </span>
           </Link>
 

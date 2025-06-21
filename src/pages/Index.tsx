@@ -1,4 +1,3 @@
-
 import { Coffee, Users, TrendingUp, Shield, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -237,13 +236,13 @@ const Index = () => {
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Coffee className="h-8 w-8" />
-            <span className="text-2xl font-bold">Bean Brew Bytes</span>
+            <span className="text-2xl font-bold">Roasty</span>
           </div>
           <p className="text-coffee-300">
             Connecting the world through exceptional coffee experiences.
           </p>
           <p className="text-coffee-400 text-sm mt-4">
-            © 2024 Bean Brew Bytes. All rights reserved.
+            © 2024 Roasty. All rights reserved.
           </p>
         </div>
       </footer>
