@@ -1,5 +1,5 @@
 
-import { Coffee, Menu } from "lucide-react";
+import { Coffee, Menu, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -43,6 +43,12 @@ const Header = () => {
               className="text-coffee-700 hover:text-coffee-900 transition-colors"
             >
               Admin
+            </Link>
+            <Link to="/login">
+              <Button className="coffee-gradient text-white hover:opacity-90">
+                <LogIn className="h-4 w-4 mr-2" />
+                Masuk
+              </Button>
             </Link>
           </nav>
 
@@ -88,6 +94,12 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Admin
+              </Link>
+              <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                <Button className="coffee-gradient text-white hover:opacity-90 w-full">
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Masuk
+                </Button>
               </Link>
             </div>
           </nav>
