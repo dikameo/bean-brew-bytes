@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Coffee, Eye, EyeOff, User, Mail, Lock } from "lucide-react";
@@ -152,7 +151,7 @@ const Register = () => {
 
               <div className="space-y-2">
                 <Label className="text-coffee-700">Pilih Peran</Label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <Button
                     type="button"
                     variant={formData.role === "roaster" ? "default" : "outline"}
@@ -172,16 +171,6 @@ const Register = () => {
                     onClick={() => handleRoleSelect("buyer")}
                   >
                     Buyer
-                  </Button>
-                  <Button
-                    type="button"
-                    variant={formData.role === "admin" ? "default" : "outline"}
-                    className={`border-coffee-200 text-coffee-600 hover:bg-coffee-50 ${
-                      formData.role === "admin" ? "coffee-gradient text-white" : ""
-                    }`}
-                    onClick={() => handleRoleSelect("admin")}
-                  >
-                    Admin
                   </Button>
                 </div>
               </div>
