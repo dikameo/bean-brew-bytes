@@ -20,14 +20,14 @@ const CoffeeDetail = () => {
   const coffeeData = {
     "1": {
       id: "1",
-      name: "Ethiopian Yirgacheffe",
+      name: "Arabica Van Java",
       roaster: "Mountain Peak Roasters",
       price: 24.99,
       weight: "250g",
       flavorNotes: ["Floral", "Citrus", "Berry", "Bright"],
       rating: 4.8,
       reviews: 127,
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1558618666-4bfc6a7b2b93?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       inStock: true,
       description: "This exceptional Ethiopian Yirgacheffe coffee offers a bright, wine-like acidity with distinctive floral and citrus notes. Grown at high altitudes in the birthplace of coffee, this bean delivers a clean, complex cup that's perfect for filter brewing methods.",
       origin: "Yirgacheffe, Ethiopia",
@@ -38,14 +38,14 @@ const CoffeeDetail = () => {
     },
     "2": {
       id: "2",
-      name: "Colombian Supremo",
+      name: "Robusta le mbatu",
       roaster: "Heritage Coffee Co.",
       price: 22.50,
       weight: "250g",
       flavorNotes: ["Chocolate", "Nutty", "Caramel", "Smooth"],
       rating: 4.6,
       reviews: 89,
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=600&h=600&fit=crop",
+      image: "https://images.unsplash.com/photo-1573628684835-ca186702bbde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       inStock: true,
       description: "A classic Colombian coffee with rich chocolate and nutty undertones. This medium roast delivers a smooth, well-balanced cup with caramel sweetness and a clean finish.",
       origin: "Huila, Colombia",
@@ -53,7 +53,25 @@ const CoffeeDetail = () => {
       processing: "Washed",
       roastLevel: "Medium",
       brewRecommendations: ["Espresso", "Drip", "French Press"]
-    }
+    },
+        "4": {
+      id: "4",
+      name: "Brazilian Santos",
+      roaster: "Mountain Peak Roasters",
+      price: 19.99,
+      weight: "250g",
+      flavorNotes: ["Floral", "Citrus", "Berry", "Bright"],
+      rating: 4.8,
+      reviews: 127,
+      image: "https://images.unsplash.com/photo-1640770587296-3bef99ca1df5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI3fHx8ZW58MHx8fHx8",
+      inStock: true,
+      description: "This exceptional Ethiopian Yirgacheffe coffee offers a bright, wine-like acidity with distinctive floral and citrus notes. Grown at high altitudes in the birthplace of coffee, this bean delivers a clean, complex cup that's perfect for filter brewing methods.",
+      origin: "Yirgacheffe, Ethiopia",
+      altitude: "1,700-2,200m",
+      processing: "Washed",
+      roastLevel: "Light to Medium",
+      brewRecommendations: ["Pour Over", "V60", "Chemex", "French Press"]
+    },
   };
 
   const coffee = coffeeData[id as keyof typeof coffeeData];

@@ -19,35 +19,35 @@ const CoffeeCatalog = () => {
   const coffees = [
     {
       id: "1",
-      name: "Ethiopian Yirgacheffe",
+      name: "Arabica Van Java",
       roaster: "Mountain Peak Roasters",
       price: 24.99,
       weight: "250g",
       flavorNotes: ["Floral", "Citrus", "Berry"],
       rating: 5,
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1558618666-4bfc6a7b2b93?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       inStock: true
     },
     {
       id: "2",
-      name: "Colombian Supremo",
+      name: "Robusta le mbatu",
       roaster: "Heritage Coffee Co.",
       price: 22.50,
       weight: "250g",
       flavorNotes: ["Chocolate", "Nutty", "Caramel"],
       rating: 4,
-      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1573628684835-ca186702bbde?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       inStock: true
     },
     {
       id: "3",
-      name: "Guatemala Antigua",
+      name: "Liberica amala",
       roaster: "Artisan Roast Works",
       price: 26.75,
       weight: "250g",
       flavorNotes: ["Smoky", "Spicy", "Full-bodied"],
       rating: 5,
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1525088553748-01d6e210e00b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE4fHx8ZW58MHx8fHx8",
       inStock: false
     },
     {
@@ -58,7 +58,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Nutty", "Chocolate", "Low Acidity"],
       rating: 4,
-      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1640770587296-3bef99ca1df5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI3fHx8ZW58MHx8fHx8",
       inStock: true
     },
     {
@@ -69,7 +69,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Wine-like", "Bright", "Complex"],
       rating: 5,
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
+      image: "https://plus.unsplash.com/premium_photo-1663050893505-590767094e6e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQ0fHx8ZW58MHx8fHx8",
       inStock: true
     },
     {
@@ -80,7 +80,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Bright", "Clean", "Citrus"],
       rating: 4,
-      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1652007762843-131e95e453d2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU1fHx8ZW58MHx8fHx8",
       inStock: true
     }
   ];
