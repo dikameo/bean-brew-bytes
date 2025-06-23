@@ -1,4 +1,3 @@
-
 import { Users, Package, TrendingUp, AlertTriangle, Eye, UserCheck, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Header from "@/components/Header";
 import StatsCard from "@/components/StatsCard";
+import Profile from "@/components/Profile";
 
 const AdminDashboard = () => {
   const systemStats = {
@@ -190,11 +190,12 @@ const AdminDashboard = () => {
         </div>
 
         <Tabs defaultValue="users" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 bg-white border border-coffee-200">
+          <TabsList className="grid w-full grid-cols-5 bg-white border border-coffee-200">
             <TabsTrigger value="users" className="data-[state=active]:bg-coffee-100">User Management</TabsTrigger>
             <TabsTrigger value="transactions" className="data-[state=active]:bg-coffee-100">Transactions</TabsTrigger>
             <TabsTrigger value="support" className="data-[state=active]:bg-coffee-100">Support</TabsTrigger>
             <TabsTrigger value="analytics" className="data-[state=active]:bg-coffee-100">Analytics</TabsTrigger>
+            <TabsTrigger value="profile" className="data-[state=active]:bg-coffee-100">Profile</TabsTrigger>
           </TabsList>
 
           <TabsContent value="users" className="space-y-6">
@@ -381,6 +382,10 @@ const AdminDashboard = () => {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+
+          <TabsContent value="profile" className="space-y-6">
+            <Profile userType="admin" />
           </TabsContent>
         </Tabs>
       </div>

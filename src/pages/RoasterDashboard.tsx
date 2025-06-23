@@ -10,6 +10,7 @@ import StatsCard from "@/components/StatsCard";
 import AddCoffeeForm from "@/components/AddCoffeeForm";
 import EditCoffeeForm from "@/components/EditCoffeeForm";
 import { toast } from "sonner";
+import Profile from "@/components/Profile";
 
 const RoasterDashboard = () => {
   const [showAddCoffeeForm, setShowAddCoffeeForm] = useState(false);
@@ -195,10 +196,11 @@ const RoasterDashboard = () => {
         </div>
 
         <Tabs defaultValue="orders" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 bg-white border border-coffee-200">
+          <TabsList className="grid w-full grid-cols-4 bg-white border border-coffee-200">
             <TabsTrigger value="orders" className="data-[state=active]:bg-coffee-100">Recent Orders</TabsTrigger>
             <TabsTrigger value="products" className="data-[state=active]:bg-coffee-100">My Products</TabsTrigger>
             <TabsTrigger value="analytics" className="data-[state=active]:bg-coffee-100">Analytics</TabsTrigger>
+            <TabsTrigger value="profile" className="data-[state=active]:bg-coffee-100">Profile</TabsTrigger>
           </TabsList>
 
           <TabsContent value="orders" className="space-y-6">
@@ -385,6 +387,10 @@ const RoasterDashboard = () => {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+
+          <TabsContent value="profile" className="space-y-6">
+            <Profile userType="roaster" />
           </TabsContent>
         </Tabs>
       </div>

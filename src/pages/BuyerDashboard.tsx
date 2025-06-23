@@ -1,4 +1,3 @@
-
 import { ShoppingCart, Heart, Package, Star, Truck, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Header from "@/components/Header";
 import StatsCard from "@/components/StatsCard";
 import { Link } from "react-router-dom";
+import Profile from "@/components/Profile";
 
 const BuyerDashboard = () => {
   const recentOrders = [
@@ -108,11 +108,12 @@ const BuyerDashboard = () => {
         </div>
 
         <Tabs defaultValue="orders" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 bg-white border border-coffee-200">
+          <TabsList className="grid w-full grid-cols-5 bg-white border border-coffee-200">
             <TabsTrigger value="orders" className="data-[state=active]:bg-coffee-100">My Orders</TabsTrigger>
             <TabsTrigger value="favorites" className="data-[state=active]:bg-coffee-100">Favorites</TabsTrigger>
             <TabsTrigger value="recommendations" className="data-[state=active]:bg-coffee-100">For You</TabsTrigger>
             <TabsTrigger value="reviews" className="data-[state=active]:bg-coffee-100">Reviews</TabsTrigger>
+            <TabsTrigger value="profile" className="data-[state=active]:bg-coffee-100">Profile</TabsTrigger>
           </TabsList>
 
           <TabsContent value="orders" className="space-y-6">
@@ -247,6 +248,10 @@ const BuyerDashboard = () => {
                 </div>
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="profile" className="space-y-6">
+            <Profile userType="buyer" />
           </TabsContent>
         </Tabs>
       </div>
