@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Search, Filter, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -16,7 +15,7 @@ const CoffeeCatalog = () => {
   const [priceRange, setPriceRange] = useState("all");
   const { addToCart } = useCart();
 
-  // Sample coffee data
+  // Sample coffee data with real images from Unsplash
   const coffees = [
     {
       id: "1",
@@ -26,7 +25,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Floral", "Citrus", "Berry"],
       rating: 5,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
       inStock: true
     },
     {
@@ -37,7 +36,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Chocolate", "Nutty", "Caramel"],
       rating: 4,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=400&h=400&fit=crop",
       inStock: true
     },
     {
@@ -48,7 +47,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Smoky", "Spicy", "Full-bodied"],
       rating: 5,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=400&fit=crop",
       inStock: false
     },
     {
@@ -59,7 +58,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Nutty", "Chocolate", "Low Acidity"],
       rating: 4,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1517022812141-23620dba5c23?w=400&h=400&fit=crop",
       inStock: true
     },
     {
@@ -70,7 +69,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Wine-like", "Bright", "Complex"],
       rating: 5,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=400&fit=crop",
       inStock: true
     },
     {
@@ -81,7 +80,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Bright", "Clean", "Citrus"],
       rating: 4,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1498936178812-4b2e558d2937?w=400&h=400&fit=crop",
       inStock: true
     }
   ];
