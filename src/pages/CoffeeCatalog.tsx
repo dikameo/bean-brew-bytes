@@ -1,18 +1,18 @@
-
 import { useState } from "react";
 import { Search, Filter, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Header from "@/components/Header";
 import CoffeeCard from "@/components/CoffeeCard";
+import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 
 const CoffeeCatalog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [priceRange, setPriceRange] = useState("all");
+  const { addToCart } = useCart();
 
   // Sample coffee data
   const coffees = [
@@ -86,9 +86,16 @@ const CoffeeCatalog = () => {
 
   const handleAddToCart = (coffeeId: string) => {
     const coffee = coffees.find(c => c.id === coffeeId);
-    toast.success(`Added ${coffee?.name} to cart!`, {
-      description: "Continue shopping or proceed to checkout."
-    });
+    if (coffee) {
+      addToCart({
+        id: coffee.id,
+        name: coffee.name,
+        roaster: coffee.roaster,
+        price: coffee.price,
+        weight: coffee.weight,
+        image: coffee.image
+      });
+    }
   };
 
   const filteredCoffees = coffees.filter(coffee => {

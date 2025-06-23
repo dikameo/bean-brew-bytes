@@ -1,16 +1,17 @@
 
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ShoppingCart, Heart, Star, Package, MapPin, Clock } from "lucide-react";
+import { ArrowLeft, Star, ShoppingCart, Heart, Package, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import Header from "@/components/Header";
 import { toast } from "sonner";
 
 const CoffeeDetail = () => {
   const { id } = useParams();
 
-  // Sample coffee data - in real app this would come from database
+  // Sample coffee data - in a real app, this would come from an API
   const coffees = [
     {
       id: "1",
@@ -22,13 +23,13 @@ const CoffeeDetail = () => {
       rating: 5,
       image: "/placeholder.svg",
       inStock: true,
+      description: "A bright and complex coffee with distinctive wine-like acidity and floral aroma. Grown at high altitude in the Yirgacheffe region of Ethiopia, this coffee offers a clean cup with notes of bergamot and jasmine.",
       origin: "Yirgacheffe, Ethiopia",
       altitude: "1,700-2,200m",
-      process: "Washed",
-      roastLevel: "Light",
-      description: "This exceptional Ethiopian coffee offers a bright, clean cup with pronounced floral aromatics and vibrant citrus acidity. Notes of bergamot and jasmine complement the wine-like berry undertones.",
-      roasterDescription: "Mountain Peak Roasters is a small-batch artisan roastery dedicated to sourcing the finest single-origin beans from around the world.",
-      brewingTips: "Best brewed with pour-over methods. Use 1:16 ratio with water at 200°F. Grind just before brewing for optimal flavor."
+      processing: "Washed",
+      roastLevel: "Light to Medium",
+      brewRecommendations: ["Pour Over", "V60", "French Press"],
+      reviews: 127
     },
     {
       id: "2",
@@ -40,13 +41,13 @@ const CoffeeDetail = () => {
       rating: 4,
       image: "/placeholder.svg",
       inStock: true,
+      description: "A well-balanced coffee with rich chocolate and nutty undertones. This Colombian Supremo offers a smooth, full-bodied experience with subtle caramel sweetness.",
       origin: "Huila, Colombia",
-      altitude: "1,500-1,800m",
-      process: "Fully Washed",
+      altitude: "1,200-1,800m",
+      processing: "Washed",
       roastLevel: "Medium",
-      description: "A classic Colombian coffee with rich chocolate notes and a smooth, well-balanced body. Perfect for both espresso and drip brewing methods.",
-      roasterDescription: "Heritage Coffee Co. has been roasting premium coffees for over 30 years, focusing on traditional roasting techniques.",
-      brewingTips: "Versatile brewing. Works great as espresso or drip coffee. Use 1:15 ratio for espresso, 1:17 for drip."
+      brewRecommendations: ["Espresso", "French Press", "Drip"],
+      reviews: 89
     }
   ];
 
@@ -59,7 +60,10 @@ const CoffeeDetail = () => {
         <div className="container mx-auto px-4 py-8 text-center">
           <h1 className="text-2xl font-bold text-coffee-900 mb-4">Coffee Not Found</h1>
           <Link to="/catalog">
-            <Button className="coffee-gradient">Back to Catalog</Button>
+            <Button className="coffee-gradient">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Catalog
+            </Button>
           </Link>
         </div>
       </div>
@@ -70,6 +74,10 @@ const CoffeeDetail = () => {
     toast.success(`Added ${coffee.name} to cart!`, {
       description: "Continue shopping or proceed to checkout."
     });
+  };
+
+  const handleAddToWishlist = () => {
+    toast.success(`Added ${coffee.name} to wishlist!`);
   };
 
   return (
@@ -84,7 +92,7 @@ const CoffeeDetail = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           {/* Coffee Image */}
-          <div className="aspect-square bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className="aspect-square bg-coffee-100 rounded-lg overflow-hidden">
             <img 
               src={coffee.image} 
               alt={coffee.name}
@@ -95,10 +103,11 @@ const CoffeeDetail = () => {
           {/* Coffee Details */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-4xl font-bold coffee-text-gradient mb-2">{coffee.name}</h1>
-              <p className="text-lg text-coffee-700 mb-4">{coffee.roaster}</p>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center">
+              <h1 className="text-3xl font-bold text-coffee-900 mb-2">{coffee.name}</h1>
+              <p className="text-lg text-coffee-600 mb-4">{coffee.roaster}</p>
+              
+              <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
@@ -107,103 +116,96 @@ const CoffeeDetail = () => {
                       }`}
                     />
                   ))}
-                  <span className="ml-2 text-coffee-600">({coffee.rating}/5)</span>
                 </div>
+                <span className="text-coffee-600">({coffee.reviews} reviews)</span>
+              </div>
+
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-3xl font-bold text-coffee-900">${coffee.price}</span>
+                <span className="text-coffee-600">/ {coffee.weight}</span>
                 <Badge variant={coffee.inStock ? "secondary" : "destructive"}>
                   {coffee.inStock ? "In Stock" : "Out of Stock"}
                 </Badge>
               </div>
-            </div>
 
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-3xl font-bold text-coffee-900">${coffee.price}</span>
-                <span className="text-coffee-600 ml-2">/ {coffee.weight}</span>
+              <p className="text-coffee-700 mb-6">{coffee.description}</p>
+
+              {/* Flavor Notes */}
+              <div className="mb-6">
+                <h3 className="font-semibold text-coffee-900 mb-2">Flavor Notes</h3>
+                <div className="flex flex-wrap gap-2">
+                  {coffee.flavorNotes.map((note) => (
+                    <Badge key={note} variant="secondary" className="bg-coffee-100 text-coffee-700">
+                      {note}
+                    </Badge>
+                  ))}
+                </div>
               </div>
-              <div className="flex gap-3">
-                <Button variant="outline" size="icon" className="border-coffee-300">
-                  <Heart className="h-4 w-4" />
-                </Button>
-                <Button 
+
+              {/* Action Buttons */}
+              <div className="flex gap-4">
+                <Button
                   onClick={handleAddToCart}
                   disabled={!coffee.inStock}
-                  className="coffee-gradient"
+                  className="flex-1 coffee-gradient"
                 >
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   Add to Cart
                 </Button>
-              </div>
-            </div>
-
-            {/* Flavor Notes */}
-            <div>
-              <h3 className="font-semibold text-coffee-900 mb-2">Flavor Notes</h3>
-              <div className="flex flex-wrap gap-2">
-                {coffee.flavorNotes.map((note) => (
-                  <Badge key={note} variant="outline" className="border-coffee-300 text-coffee-700">
-                    {note}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            {/* Coffee Details Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-coffee-600" />
-                <div>
-                  <p className="text-sm text-coffee-600">Origin</p>
-                  <p className="font-medium text-coffee-900">{coffee.origin}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Package className="h-4 w-4 text-coffee-600" />
-                <div>
-                  <p className="text-sm text-coffee-600">Process</p>
-                  <p className="font-medium text-coffee-900">{coffee.process}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-coffee-600" />
-                <div>
-                  <p className="text-sm text-coffee-600">Roast Level</p>
-                  <p className="font-medium text-coffee-900">{coffee.roastLevel}</p>
-                </div>
-              </div>
-              <div>
-                <p className="text-sm text-coffee-600">Altitude</p>
-                <p className="font-medium text-coffee-900">{coffee.altitude}</p>
+                <Button
+                  variant="outline"
+                  onClick={handleAddToWishlist}
+                  className="border-coffee-300 text-coffee-700"
+                >
+                  <Heart className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Description Cards */}
+        {/* Additional Details */}
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="border-coffee-200">
             <CardHeader>
-              <CardTitle className="text-coffee-900">About This Coffee</CardTitle>
+              <CardTitle className="text-coffee-900">Coffee Details</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-coffee-700">{coffee.description}</p>
+            <CardContent className="space-y-4">
+              <div className="flex justify-between">
+                <span className="text-coffee-600">Origin:</span>
+                <span className="text-coffee-900">{coffee.origin}</span>
+              </div>
+              <Separator />
+              <div className="flex justify-between">
+                <span className="text-coffee-600">Altitude:</span>
+                <span className="text-coffee-900">{coffee.altitude}</span>
+              </div>
+              <Separator />
+              <div className="flex justify-between">
+                <span className="text-coffee-600">Processing:</span>
+                <span className="text-coffee-900">{coffee.processing}</span>
+              </div>
+              <Separator />
+              <div className="flex justify-between">
+                <span className="text-coffee-600">Roast Level:</span>
+                <span className="text-coffee-900">{coffee.roastLevel}</span>
+              </div>
             </CardContent>
           </Card>
 
           <Card className="border-coffee-200">
             <CardHeader>
-              <CardTitle className="text-coffee-900">About the Roaster</CardTitle>
+              <CardTitle className="text-coffee-900">Brewing Recommendations</CardTitle>
+              <CardDescription>Best brewing methods for this coffee</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-coffee-700">{coffee.roasterDescription}</p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-coffee-200 md:col-span-2">
-            <CardHeader>
-              <CardTitle className="text-coffee-900">Brewing Tips</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-coffee-700">{coffee.brewingTips}</p>
+              <div className="space-y-2">
+                {coffee.brewRecommendations.map((method) => (
+                  <Badge key={method} variant="outline" className="border-coffee-300 text-coffee-700">
+                    {method}
+                  </Badge>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
