@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Package, TrendingUp, Star, Plus, Bell, BarChart3, Edit, Eye, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,37 +8,47 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Header from "@/components/Header";
 import StatsCard from "@/components/StatsCard";
 import AddCoffeeForm from "@/components/AddCoffeeForm";
+import EditCoffeeForm from "@/components/EditCoffeeForm";
 import { toast } from "sonner";
 
 const RoasterDashboard = () => {
   const [showAddCoffeeForm, setShowAddCoffeeForm] = useState(false);
+  const [showEditCoffeeForm, setShowEditCoffeeForm] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
+  
   const [products, setProducts] = useState([
     { 
       id: "1", 
       name: "Ethiopian Yirgacheffe", 
+      roaster: "Mountain Peak Roasters",
       stock: 45, 
       price: 24.99, 
       rating: 4.8, 
       sales: 127,
+      flavorNotes: ["Floral", "Citrus", "Berry"],
       image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=100&h=100&fit=crop"
     },
     { 
       id: "2", 
       name: "Colombian Supremo", 
+      roaster: "Mountain Peak Roasters",
       stock: 32, 
       price: 22.50, 
       rating: 4.6, 
       sales: 89,
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=100&h=100&fit=crop"
+      flavorNotes: ["Chocolate", "Nutty", "Caramel"],
+      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=100&h=100&fit=crop"
     },
     { 
       id: "3", 
       name: "Guatemala Antigua", 
+      roaster: "Mountain Peak Roasters",
       stock: 0, 
       price: 26.75, 
       rating: 4.9, 
       sales: 156,
-      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=100&h=100&fit=crop"
+      flavorNotes: ["Smoky", "Spicy", "Full-bodied"],
+      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=100&h=100&fit=crop"
     },
   ]);
 
@@ -57,17 +66,31 @@ const RoasterDashboard = () => {
     setProducts(prev => [...prev, {
       id: newCoffee.id,
       name: newCoffee.name,
-      stock: 50, // Default stock
+      roaster: newCoffee.roaster,
+      stock: 50,
       price: newCoffee.price,
       rating: 0,
       sales: 0,
-      image: newCoffee.image || "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=100&h=100&fit=crop"
+      flavorNotes: newCoffee.flavorNotes,
+      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=100&h=100&fit=crop"
     }]);
     setShowAddCoffeeForm(false);
   };
 
   const handleEditProduct = (productId: string) => {
-    toast.info(`Edit product ${productId} - Feature coming soon!`);
+    const product = products.find(p => p.id === productId);
+    if (product) {
+      setEditingProduct(product);
+      setShowEditCoffeeForm(true);
+    }
+  };
+
+  const handleEditSubmit = (updatedCoffee: any) => {
+    setProducts(prev => prev.map(p => 
+      p.id === updatedCoffee.id ? updatedCoffee : p
+    ));
+    setShowEditCoffeeForm(false);
+    setEditingProduct(null);
   };
 
   const handleDeleteProduct = (productId: string) => {
@@ -125,6 +148,22 @@ const RoasterDashboard = () => {
             </DialogContent>
           </Dialog>
         </div>
+
+        {/* Edit Coffee Dialog */}
+        <Dialog open={showEditCoffeeForm} onOpenChange={setShowEditCoffeeForm}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            {editingProduct && (
+              <EditCoffeeForm
+                coffee={editingProduct}
+                onClose={() => {
+                  setShowEditCoffeeForm(false);
+                  setEditingProduct(null);
+                }}
+                onSubmit={handleEditSubmit}
+              />
+            )}
+          </DialogContent>
+        </Dialog>
 
         {/* Stats Overview */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

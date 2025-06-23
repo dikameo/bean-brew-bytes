@@ -15,7 +15,7 @@ const CoffeeCatalog = () => {
   const [priceRange, setPriceRange] = useState("all");
   const { addToCart } = useCart();
 
-  // Sample coffee data with real images from Unsplash
+  // Sample coffee data with coffee bean images from Unsplash
   const coffees = [
     {
       id: "1",
@@ -36,7 +36,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Chocolate", "Nutty", "Caramel"],
       rating: 4,
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop",
       inStock: true
     },
     {
@@ -47,7 +47,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Smoky", "Spicy", "Full-bodied"],
       rating: 5,
-      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
       inStock: false
     },
     {
@@ -58,7 +58,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Nutty", "Chocolate", "Low Acidity"],
       rating: 4,
-      image: "https://images.unsplash.com/photo-1517022812141-23620dba5c23?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop",
       inStock: true
     },
     {
@@ -69,7 +69,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Wine-like", "Bright", "Complex"],
       rating: 5,
-      image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
       inStock: true
     },
     {
@@ -80,7 +80,7 @@ const CoffeeCatalog = () => {
       weight: "250g",
       flavorNotes: ["Bright", "Clean", "Citrus"],
       rating: 4,
-      image: "https://images.unsplash.com/photo-1498936178812-4b2e558d2937?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop",
       inStock: true
     }
   ];
@@ -130,7 +130,6 @@ const CoffeeCatalog = () => {
           </p>
         </div>
 
-        {/* Search and Filters */}
         <div className="mb-8 space-y-4">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="relative flex-1">
@@ -171,7 +170,6 @@ const CoffeeCatalog = () => {
             </div>
           </div>
 
-          {/* Flavor Notes Filter */}
           <div className="flex flex-wrap gap-2">
             <span className="text-sm font-medium text-coffee-700 self-center">Popular flavors:</span>
             {allFlavorNotes.slice(0, 8).map((note) => (
@@ -187,14 +185,12 @@ const CoffeeCatalog = () => {
           </div>
         </div>
 
-        {/* Results Summary */}
         <div className="mb-6">
           <p className="text-coffee-600">
             Showing {filteredCoffees.length} of {coffees.length} coffees
           </p>
         </div>
 
-        {/* Coffee Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {filteredCoffees.map((coffee) => (
             <CoffeeCard
